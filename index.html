@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entry Permit - Sample Demo</title>
+<title>Entry Permit - For Demo Only</title>
 
 <style>
 * {
@@ -13,70 +13,93 @@
 
 body {
   margin: 0;
-  padding: 20px;
-  background: #e8eeee;
-  color: #253e43;
+  padding: 15px;
+  background: #e5eeee;
   font-family: Arial, Helvetica, sans-serif;
+  color: #263f43;
 }
 
 .toolbar {
-  max-width: 900px;
-  margin: 0 auto 15px;
-  display: flex;
-  gap: 10px;
+  max-width: 1000px;
+  margin: 0 auto 12px;
 }
 
 button {
-  padding: 10px 15px;
-  border: 0;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
   background: #164e63;
   color: white;
   font-weight: bold;
   cursor: pointer;
 }
 
-.document {
+.permit {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   width: 100%;
-  max-width: 900px;
-  min-height: 1150px;
+  max-width: 1000px;
+  min-height: 1350px;
   margin: auto;
-  padding: 35px;
-  border: 1px solid #8bc9cc;
+  padding: 35px 38px;
+
   background:
-    radial-gradient(ellipse at 18% 20%, #d5f4f1, transparent 38%),
     repeating-linear-gradient(
-      125deg, #ffffff18 0 3px, transparent 3px 11px
+      125deg,
+      #ffffff12 0px,
+      #ffffff12 3px,
+      transparent 3px,
+      transparent 10px
     ),
-    linear-gradient(135deg, #b8edef, #9bdadd 58%, #b8eeee);
+    linear-gradient(
+      135deg,
+      #b8edef,
+      #9cdbdf,
+      #b8eeee
+    );
+
+  border: 1px solid #8bc9cc;
   box-shadow: 0 5px 20px #0002;
+}
+
+.demo-label {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 2;
+  padding: 5px 9px;
+  border: 1px solid #963c3c;
+  color: #8c2929;
+  background: #ffffffa8;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
 }
 
 .watermark {
   position: absolute;
   z-index: -1;
-  top: 43%;
-  left: -12%;
-  width: 125%;
+  top: 45%;
+  left: -10%;
+  width: 120%;
   transform: rotate(-27deg);
-  text-align: center;
-  white-space: nowrap;
-  font-size: clamp(35px, 7vw, 70px);
-  font-weight: 900;
-  letter-spacing: 4px;
-  color: #963c3c26;
   border-top: 5px solid #963c3c20;
   border-bottom: 5px solid #963c3c20;
   padding: 15px 0;
+  text-align: center;
+  white-space: nowrap;
+  font-size: clamp(35px, 6vw, 70px);
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #963c3c22;
 }
 
 .header {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 25px;
+  margin-top: 18px;
 }
 
 .department {
@@ -85,18 +108,18 @@ button {
 }
 
 .greek {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
 }
 
 .caption {
   margin-top: 25px;
-  font-weight: bold;
   font-size: 10px;
+  font-weight: bold;
 }
 
 .employer {
-  min-height: 100px;
+  min-height: 105px;
   border: 2px solid #5b8588;
   border-radius: 7px;
   padding: 12px;
@@ -110,22 +133,22 @@ button {
   text-align: center;
 }
 
-.form {
+.form-number {
   text-align: right;
   font-size: 11px;
   font-weight: bold;
 }
 
 .republic {
-  margin-top: 20px;
-  font-weight: bold;
+  margin-top: 18px;
   font-size: 14px;
   line-height: 1.5;
+  font-weight: bold;
 }
 
 h1 {
+  margin: 10px 0 18px;
   font-size: 22px;
-  margin: 12px 0 18px;
 }
 
 .meta {
@@ -134,6 +157,7 @@ h1 {
   gap: 8px;
   margin: 10px 0;
   font-size: 11px;
+  text-align: left;
 }
 
 .meta span {
@@ -160,7 +184,7 @@ input {
 
 .row {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 145px 1fr;
   gap: 8px;
   align-items: start;
   margin-bottom: 18px;
@@ -178,15 +202,20 @@ input {
 
 .expiry {
   display: grid;
-  grid-template-columns: 1fr 170px;
-  gap: 15px;
+  grid-template-columns: 1fr 180px;
   align-items: center;
+  gap: 15px;
   margin-top: 55px;
 }
 
 .expiry-label {
   font-size: 10px;
+  font-weight: bold;
   line-height: 1.5;
+}
+
+.expiry-date {
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -199,18 +228,23 @@ input {
 
 .remarks h2 {
   font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.remarks p {
+  margin-bottom: 12px;
 }
 
 footer {
-  margin-top: 45px;
   display: flex;
   justify-content: space-between;
   align-items: end;
   gap: 20px;
+  margin-top: 45px;
 }
 
 .barcode {
-  width: 145px;
+  width: 150px;
   height: 35px;
   opacity: 0.65;
   background: repeating-linear-gradient(
@@ -232,7 +266,7 @@ footer {
 }
 
 .issued input {
-  width: 130px;
+  width: 135px;
 }
 
 .sample-seal {
@@ -254,20 +288,20 @@ footer {
 .warning {
   margin-top: 22px;
   padding: 12px;
-  text-align: center;
-  border: 2px solid #9c4a4a;
-  background: #ffffff70;
-  color: #742f2f;
+  border: 2px solid #963c3c;
+  color: #842e2e;
+  background: #ffffff80;
   font-size: 11px;
   font-weight: bold;
+  text-align: center;
 }
 
 @media (max-width: 650px) {
   body {
-    padding: 8px;
+    padding: 6px;
   }
 
-  .document {
+  .permit {
     padding: 18px;
     min-height: auto;
   }
@@ -306,7 +340,7 @@ footer {
     display: none;
   }
 
-  .document {
+  .permit {
     width: 100%;
     max-width: none;
     box-shadow: none;
@@ -318,27 +352,34 @@ footer {
 <body>
 
 <div class="toolbar">
-  <button onclick="window.print()">Print / Save PDF</button>
-  <button onclick="resetDemo()">Reset Fields</button>
+  <button onclick="window.print()">
+    Print / Save as PDF
+  </button>
 </div>
 
-<main class="document">
+<main class="permit">
 
+  <div class="demo-label">FOR DEMO ONLY</div>
   <div class="watermark">SAMPLE — NOT VALID</div>
 
   <header class="header">
 
     <section class="department">
+
       <div class="greek">
         ΥΠΟΥΡΓΕΙΟ ΜΕΤΑΝΑΣΤΕΥΣΗΣ
       </div>
 
-      <b>MINISTRY OF MIGRATION AND
-      INTERNATIONAL PROTECTION</b>
+      <b>
+        MINISTRY OF MIGRATION AND
+        INTERNATIONAL PROTECTION
+      </b>
 
       <div>MIGRATION DEPARTMENT</div>
 
-      <div class="caption">EMPLOYER / APPLICANT</div>
+      <div class="caption">
+        EMPLOYER / APPLICANT
+      </div>
 
       <div class="employer">
         <input value="SAMPLE EDUCATION CENTRE">
@@ -346,11 +387,14 @@ footer {
         <input value="NICOSIA - SAMPLE ADDRESS">
         <input value="00000000">
       </div>
+
     </section>
 
     <section class="heading">
 
-      <div class="form">(SAMPLE FORM)</div>
+      <div class="form-number">
+        (SAMPLE FORM)
+      </div>
 
       <div class="republic">
         ΚΥΠΡΙΑΚΗ ΔΗΜΟΚΡΑΤΙΑ<br>
@@ -375,11 +419,13 @@ footer {
       </div>
 
     </section>
+
   </header>
 
   <section class="details">
 
     <div>
+
       <div class="row">
         <label>NAME</label>
         <strong><input value="SAMPLE PERSON"></strong>
@@ -397,11 +443,13 @@ footer {
 
       <div class="row">
         <label>PURPOSE OF PERMIT</label>
-        <strong><input value="ENGLISH FOUNDATION - SAMPLE"></strong>
+        <strong><input value="EDUCATION SAMPLE"></strong>
       </div>
+
     </div>
 
     <div>
+
       <div class="row">
         <label>PASSPORT NO.</label>
         <strong><input value="XX0000000"></strong>
@@ -411,36 +459,40 @@ footer {
         <label>VALIDITY</label>
         <strong><input value="SAMPLE PERIOD"></strong>
       </div>
+
     </div>
 
   </section>
 
   <section class="expiry">
+
     <div class="expiry-label">
       THIS IS A DESIGN DEMONSTRATION ONLY.
       IT IS NOT AN OFFICIAL PERMIT AND CANNOT
       BE USED FOR TRAVEL OR IDENTIFICATION.
     </div>
 
-    <strong>
+    <strong class="expiry-date">
       <input value="01 January, 20XX">
     </strong>
+
   </section>
 
   <section class="remarks">
+
     <h2>REMARKS / CONDITIONS</h2>
 
     <p>
-      This fictional document is provided for
-      HTML, CSS and JavaScript design practice.
-      All names, numbers, dates and organisations
+      This fictional sample is created for HTML,
+      CSS and JavaScript layout practice. All
+      names, numbers, dates and organisations
       are sample placeholders.
     </p>
 
     <p>
       Actual entry, residence, registration and
-      supporting-document requirements should be
-      checked with the relevant official authorities.
+      supporting-document requirements must be
+      confirmed with the relevant authorities.
     </p>
 
     <p>
@@ -452,6 +504,7 @@ footer {
       Use official application channels for genuine
       immigration and travel documentation.
     </p>
+
   </section>
 
   <footer>
@@ -489,3 +542,4 @@ function resetDemo() {
 
 </body>
 </html>
+
