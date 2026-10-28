@@ -1,344 +1,491 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MINISTRY OF FOREIGN AFFAIRS OF THE KYRGYZ REPUBLIC</title>
+<title>Entry Permit - Sample Demo</title>
 
 <style>
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background: white;
-    font-family: Arial, sans-serif;
-    color: #222;
+body {
+  margin: 0;
+  padding: 20px;
+  background: #e8eeee;
+  color: #253e43;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Main A4 Page */
-.page {
-    width: 210mm;
-    min-height: 297mm;
-    margin: 0 auto;
-    padding: 8mm 10mm;
-    background: white;
+.toolbar {
+  max-width: 900px;
+  margin: 0 auto 15px;
+  display: flex;
+  gap: 10px;
 }
 
-/* Header */
+button {
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 6px;
+  background: #164e63;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.document {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+  min-height: 1150px;
+  margin: auto;
+  padding: 35px;
+  border: 1px solid #8bc9cc;
+  background:
+    radial-gradient(ellipse at 18% 20%, #d5f4f1, transparent 38%),
+    repeating-linear-gradient(
+      125deg, #ffffff18 0 3px, transparent 3px 11px
+    ),
+    linear-gradient(135deg, #b8edef, #9bdadd 58%, #b8eeee);
+  box-shadow: 0 5px 20px #0002;
+}
+
+.watermark {
+  position: absolute;
+  z-index: -1;
+  top: 43%;
+  left: -12%;
+  width: 125%;
+  transform: rotate(-27deg);
+  text-align: center;
+  white-space: nowrap;
+  font-size: clamp(35px, 7vw, 70px);
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #963c3c26;
+  border-top: 5px solid #963c3c20;
+  border-bottom: 5px solid #963c3c20;
+  padding: 15px 0;
+}
+
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 2px 0 6px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 25px;
 }
 
-.header img {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
+.department {
+  font-size: 11px;
+  line-height: 1.5;
 }
 
-.header-text {
-    text-align: center;
+.greek {
+  font-size: 12px;
+  font-weight: bold;
 }
 
-.header-title {
-    font-size: 11px;
-    line-height: 14px;
+.caption {
+  margin-top: 25px;
+  font-weight: bold;
+  font-size: 10px;
 }
 
-.header-subtitle {
-    font-size: 7px;
-    margin-top: 2px;
+.employer {
+  min-height: 100px;
+  border: 2px solid #5b8588;
+  border-radius: 7px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
 }
 
-/* Line */
-hr {
-    border: 0;
-    border-top: 1px solid #999;
-    margin: 5px 0 8px;
+.heading {
+  text-align: center;
 }
 
-/* Photo + QR */
-.photo-qr {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 3px;
+.form {
+  text-align: right;
+  font-size: 11px;
+  font-weight: bold;
 }
 
-.photo-qr td {
-    border: none;
-    padding: 0;
-    vertical-align: top;
+.republic {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.photo-cell {
-    width: 50%;
-    text-align: left;
+h1 {
+  font-size: 22px;
+  margin: 12px 0 18px;
 }
 
-.qr-cell {
-    width: 50%;
-    text-align: right;
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 10px 0;
+  font-size: 11px;
 }
 
-.photo {
-    width: 100px;
-    height: 130px;
-    object-fit: contain;
+.meta span {
+  font-weight: bold;
 }
 
-.qr {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+input {
+  width: 100%;
+  min-width: 0;
+  padding: 2px 0;
+  border: 0;
+  border-bottom: 1px dotted #64888b;
+  background: transparent;
+  color: inherit;
+  font: inherit;
 }
 
-/* Information Table */
-.info {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+.details {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 25px;
+  margin-top: 25px;
 }
 
-.info td {
-    padding: 4px 5px;
-    vertical-align: middle;
-    border-bottom: 1px solid #ddd;
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.row label {
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.row strong {
+  font-size: 12px;
+}
+
+.expiry {
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  gap: 15px;
+  align-items: center;
+  margin-top: 55px;
+}
+
+.expiry-label {
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+.remarks {
+  margin-top: 25px;
+  font-size: 11px;
+  line-height: 1.65;
+  text-align: justify;
+}
+
+.remarks h2 {
+  font-size: 12px;
+}
+
+footer {
+  margin-top: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+
+.barcode {
+  width: 145px;
+  height: 35px;
+  opacity: 0.65;
+  background: repeating-linear-gradient(
+    90deg,
+    #263d41 0 2px,
+    transparent 2px 4px,
+    #263d41 4px 5px,
+    transparent 5px 8px
+  );
+}
+
+.issued {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.issued input {
+  width: 130px;
+}
+
+.sample-seal {
+  width: 165px;
+  height: 105px;
+  border: 2px dashed #315e6270;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #315e62a8;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.5;
+  transform: rotate(-8deg);
+}
+
+.warning {
+  margin-top: 22px;
+  padding: 12px;
+  text-align: center;
+  border: 2px solid #9c4a4a;
+  background: #ffffff70;
+  color: #742f2f;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+@media (max-width: 650px) {
+  body {
+    padding: 8px;
+  }
+
+  .document {
+    padding: 18px;
+    min-height: auto;
+  }
+
+  .header,
+  .details {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .row {
+    grid-template-columns: 120px 1fr;
+  }
+
+  .expiry {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+
+  footer {
+    margin-top: 30px;
+  }
+
+  .remarks {
     font-size: 10px;
-    line-height: 12px;
+  }
 }
 
-.info td:first-child {
-    width: 48%;
-    font-weight: bold;
-}
-
-.info td:last-child {
-    width: 52%;
-}
-
-/* Footer */
-.footer {
-    margin-top: 10px;
-    font-size: 9px;
-    line-height: 12px;
-    color: #666;
-    text-align: center;
-}
-
-/* Print */
 @media print {
+  body {
+    padding: 0;
+    background: white;
+  }
 
-    @page {
-        size: A4;
-        margin: 0;
-    }
+  .toolbar {
+    display: none;
+  }
 
-    html, body {
-        width: 210mm;
-        height: 297mm;
-        margin: 0;
-        padding: 0;
-    }
-
-    .page {
-        width: 210mm;
-        height: 297mm;
-        min-height: 297mm;
-        margin: 0;
-        padding: 8mm 10mm;
-        box-shadow: none;
-    }
-
-    table,
-    tr,
-    td {
-        page-break-inside: avoid;
-    }
+  .document {
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+  }
 }
-
 </style>
-
 </head>
 
 <body>
 
-<div class="page">
-
-    <!-- HEADER -->
-    <div class="header">
-
-        <img src="logo.jpeg" alt="Logo">
-
-        <div class="header-text">
-
-            <div class="header-title">
-                КЫРГЫЗ РЕСПУБЛИКАСЫНЫН ТЫШКЫ ИШТЕР МИНИСТРЛИИ<br>
-                MINISTRY OF FOREIGN AFFAIRS OF THE KYRGYZ REPUBLIC
-            </div>
-
-            <div class="header-subtitle">
-                Бирдиктүү уруксат / Uniform Permit
-            </div>
-
-        </div>
-
-    </div>
-
-    <hr>
-
-    <!-- PHOTO + QR -->
-    <table class="photo-qr">
-
-        <tr>
-
-            <td class="photo-cell">
-
-                <img
-                    src="my photo.jpeg"
-                    alt="Photo"
-                    class="photo"
-                >
-
-            </td>
-
-            <td class="qr-cell">
-
-                <img
-                    src="qr.png"
-                    alt="QR Code"
-                    class="qr"
-                >
-
-            </td>
-
-        </tr>
-
-<button onclick="window.print()" class="print-btn">
-    Print
-</button>
-
-<style>
-.print-btn {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    margin: 0;
-    padding: 8px 22px;
-    font-size: 15px;
-    cursor: pointer;
-
-    border: 1px solid #888888;
-    border-radius: 4px;
-
-    background: #b0b0b0;
-    color: white;
-    z-index: 9999;
-
-    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
-}
-
-.print-btn:active {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
-    transform: translateY(2px);
-}
-
-@media print {
-    .print-btn {
-        display: none;
-    }
-}
-</style>
-    </table>
-
-    <!-- INFORMATION -->
-    <table class="info">
-
-        <tr>
-            <td>ТОЛУК АТЫ-ЖӨНҮ/FULL NAME</td>
-            <td>ABDUL RAHIM</td>
-        </tr>
-
-        <tr>
-            <td>Туулган күнү/DATE OF BIRTH</td>
-            <td>01-01-1992</td>
-        </tr>
-
-        <tr>
-            <td>Жарандыгы/CITIZENSHIP</td>
-            <td>PAKISTANI</td>
-        </tr>
-
-        <tr>
-            <td>Жол жүрүү документинин номери/TRAVEL DOCUMENT NUMBER</td>
-            <td>JN9153763</td>
-        </tr>
-
-        <tr>
-            <td>Жол жүрүү документинин түрү/TRAVEL DOCUMENT TYPE</td>
-            <td>ORDINARY</td>
-        </tr>
-
-        <tr>
-            <td>Берилген күнү/DATE OF ISSUE</td>
-            <td>03-07-2025</td>
-        </tr>
-
-        <tr>
-            <td>Жарактуулук мөөнөтү/DATE OF EXPIRY</td>
-            <td>02-07-2030</td>
-        </tr>
-
-        <tr>
-            <td>Бирдиктүү уруксаттын жарактуулук мөөнөтү/VALIDITY OF UNIFORM PERMIT</td>
-            <td>02-10-2026 to 01-12-2026</td>
-        </tr>
-
-        <tr>
-            <td>Визанын түрү/VISA TYPE</td>
-            <td>WORKING VISA</td>
-        </tr>
-
-        <tr>
-            <td>Кирүүлөрдүн саны/NUMBER OF ENTRIES</td>
-            <td>MULTIPLE ENTRY</td>
-        </tr>
-
-        <tr>
-            <td>Болуу мөөнөтү/PERIOD OF STAY</td>
-            <td>59 DAYS</td>
-        </tr>
-
-        <tr>
-            <td>Иш берүүчү / Чакыруучу тарап/EMPLOYER / INVITING PARTY</td>
-            <td>CREDO SEWING</td>
-        </tr>
-
-        <tr>
-            <td>RIGHT TO WORK</td>
-            <td>LABOURER PERMIT</td>
-        </tr>
-
-    </table>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        Бул барак Кыргыз Республикасынын Тышкы иштер министрлиги тарабынан
-        күбөлөндүрүлгөн, мамлекеттик орган /
-        This page is Ministry of Foreign Affairs Kyrgyz Republic, certified,
-        government authority.
-    </div>
-
+<div class="toolbar">
+  <button onclick="window.print()">Print / Save PDF</button>
+  <button onclick="resetDemo()">Reset Fields</button>
 </div>
+
+<main class="document">
+
+  <div class="watermark">SAMPLE — NOT VALID</div>
+
+  <header class="header">
+
+    <section class="department">
+      <div class="greek">
+        ΥΠΟΥΡΓΕΙΟ ΜΕΤΑΝΑΣΤΕΥΣΗΣ
+      </div>
+
+      <b>MINISTRY OF MIGRATION AND
+      INTERNATIONAL PROTECTION</b>
+
+      <div>MIGRATION DEPARTMENT</div>
+
+      <div class="caption">EMPLOYER / APPLICANT</div>
+
+      <div class="employer">
+        <input value="SAMPLE EDUCATION CENTRE">
+        <input value="Example Avenue">
+        <input value="NICOSIA - SAMPLE ADDRESS">
+        <input value="00000000">
+      </div>
+    </section>
+
+    <section class="heading">
+
+      <div class="form">(SAMPLE FORM)</div>
+
+      <div class="republic">
+        ΚΥΠΡΙΑΚΗ ΔΗΜΟΚΡΑΤΙΑ<br>
+        REPUBLIC OF CYPRUS
+      </div>
+
+      <h1>ENTRY PERMIT</h1>
+
+      <div class="meta">
+        <span>REFERENCE NO.</span>
+        <strong><input value="SAMPLE-000000"></strong>
+      </div>
+
+      <div class="meta">
+        <span>NATIONALITY</span>
+        <strong><input value="SAMPLE"></strong>
+      </div>
+
+      <div class="meta">
+        <span>CODE</span>
+        <strong><input value="DEMO"></strong>
+      </div>
+
+    </section>
+  </header>
+
+  <section class="details">
+
+    <div>
+      <div class="row">
+        <label>NAME</label>
+        <strong><input value="SAMPLE PERSON"></strong>
+      </div>
+
+      <div class="row">
+        <label>NATIONALITY</label>
+        <strong><input value="SAMPLE"></strong>
+      </div>
+
+      <div class="row">
+        <label>CATEGORY OF ENTRY / RESIDENCE</label>
+        <strong><input value="STUDENT - DEMO"></strong>
+      </div>
+
+      <div class="row">
+        <label>PURPOSE OF PERMIT</label>
+        <strong><input value="ENGLISH FOUNDATION - SAMPLE"></strong>
+      </div>
+    </div>
+
+    <div>
+      <div class="row">
+        <label>PASSPORT NO.</label>
+        <strong><input value="XX0000000"></strong>
+      </div>
+
+      <div class="row">
+        <label>VALIDITY</label>
+        <strong><input value="SAMPLE PERIOD"></strong>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="expiry">
+    <div class="expiry-label">
+      THIS IS A DESIGN DEMONSTRATION ONLY.
+      IT IS NOT AN OFFICIAL PERMIT AND CANNOT
+      BE USED FOR TRAVEL OR IDENTIFICATION.
+    </div>
+
+    <strong>
+      <input value="01 January, 20XX">
+    </strong>
+  </section>
+
+  <section class="remarks">
+    <h2>REMARKS / CONDITIONS</h2>
+
+    <p>
+      This fictional document is provided for
+      HTML, CSS and JavaScript design practice.
+      All names, numbers, dates and organisations
+      are sample placeholders.
+    </p>
+
+    <p>
+      Actual entry, residence, registration and
+      supporting-document requirements should be
+      checked with the relevant official authorities.
+    </p>
+
+    <p>
+      This sample is not an issued permit, visa,
+      approval, or proof of immigration status.
+    </p>
+
+    <p>
+      Use official application channels for genuine
+      immigration and travel documentation.
+    </p>
+  </section>
+
+  <footer>
+
+    <div>
+      <div class="barcode"></div>
+
+      <div class="issued">
+        DATE OF ISSUE
+        <input value="01 January, 20XX">
+      </div>
+    </div>
+
+    <div class="sample-seal">
+      SAMPLE ONLY<br>
+      NO OFFICIAL SEAL<br>
+      NO SIGNATURE
+    </div>
+
+  </footer>
+
+  <div class="warning">
+    SAMPLE — NOT VALID — FOR DESIGN DEMONSTRATION ONLY
+  </div>
+
+</main>
+
+<script>
+function resetDemo() {
+  document.querySelectorAll("input").forEach(function(input) {
+    input.value = input.defaultValue;
+  });
+}
+</script>
 
 </body>
 </html>
